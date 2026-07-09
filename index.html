@@ -507,18 +507,36 @@
   </section>
 
   <!-- COUNTDOWN -->
-  <div id="countdown">
-    <p class="section-eyebrow">Counting down to forever</p>
-    <div class="countdown-grid">
-      <div class="cd-unit"><span class="cd-number" id="cd-days">--</span><span class="cd-label">Days</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-number" id="cd-hours">--</span><span class="cd-label">Hours</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-number" id="cd-mins">--</span><span class="cd-label">Minutes</span></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-unit"><span class="cd-number" id="cd-secs">--</span><span class="cd-label">Seconds</span></div>
-    </div>
-  </div>
+  <script>
+  // Set your wedding date & time here
+  const weddingDate = new Date("2027-01-28T09:00:00+05:30"); // adjust time as needed
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = weddingDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("cd-days").textContent = "0";
+      document.getElementById("cd-hours").textContent = "0";
+      document.getElementById("cd-mins").textContent = "0";
+      document.getElementById("cd-secs").textContent = "0";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("cd-days").textContent = days;
+    document.getElementById("cd-hours").textContent = hours;
+    document.getElementById("cd-mins").textContent = mins;
+    document.getElementById("cd-secs").textContent = secs;
+  }
+
+  updateCountdown(); // run immediately so it doesn't show 0 for a second
+  setInterval(updateCountdown, 1000);
+</script>
 
   <!-- OUR STORY -->
   <section id="story">
