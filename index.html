@@ -464,6 +464,49 @@
     }
     .reveal.visible { opacity: 1; transform: none; }
 
+    /* ── FLOWER TRIGGER ─────────────────────────── */
+    .flower-trigger {
+      display: inline-block;
+      font-size: clamp(2.6rem, 6vw, 3.4rem);
+      margin-top: 2.2rem;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      animation: flowerPulse 2.4s ease-in-out infinite;
+      transition: transform .2s ease;
+      opacity: 0;
+      animation: fadeUp .8s .8s forwards, flowerPulse 2.4s 1.6s ease-in-out infinite;
+    }
+    .flower-trigger:hover  { transform: scale(1.15) rotate(-6deg); }
+    .flower-trigger:active { transform: scale(0.88) rotate(4deg); }
+    @keyframes flowerPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.09) rotate(3deg); }
+    }
+    .flower-hint {
+      margin-top: .7rem;
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      animation: fadeUp .8s 1s forwards;
+    }
+    .falling-flower {
+      position: fixed;
+      top: -60px;
+      pointer-events: none;
+      z-index: 9999;
+      will-change: transform, opacity;
+      animation-name: flowerFall;
+      animation-timing-function: ease-in;
+      animation-fill-mode: forwards;
+    }
+    @keyframes flowerFall {
+      0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(112vh) translateX(var(--drift, 0px)) rotate(var(--spin, 360deg)); opacity: 0; }
+    }
+
     /* ── MOBILE ─────────────────────────────────── */
     @media (max-width: 600px) {
       nav { gap: 1.2rem; flex-wrap: wrap; padding: 1rem; }
@@ -475,6 +518,11 @@
   </style>
 </head>
 <body>
+
+  <!-- Background music: replace "song.mp3" with your own audio file in the same folder -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- NAV -->
   <nav>
@@ -491,14 +539,18 @@
     <h1 class="hero-names">
       Prithvi Raj
       <span class="ampersand">✦ &amp; ✦</span>
-      Harshini
+     Harshini
     </h1>
 
-    <p class="hero-date">Thursday, 28th January · 2025 · Chennai</p>
+    <p class="hero-date">Thursday, 28th January · 2027 · Chennai</p>
 
     <div class="floral-divider" style="margin-top:2.5rem; opacity:0; animation: fadeUp .8s .65s forwards;">
       <span>✾</span>
     </div>
+
+    <!-- Tap-to-bloom flower + music trigger -->
+    <div class="flower-trigger" id="flowerTrigger" role="button" aria-label="Tap for flowers and music">🌸</div>
+    <p class="flower-hint">tap the flower</p>
 
     <div class="hero-scroll-hint">
       <div class="scroll-line"></div>
@@ -507,36 +559,18 @@
   </section>
 
   <!-- COUNTDOWN -->
-  <script>
-  // Set your wedding date & time here
-  const weddingDate = new Date("2027-01-28T09:00:00+05:30"); // adjust time as needed
-
-  function updateCountdown() {
-    const now = new Date();
-    const diff = weddingDate - now;
-
-    if (diff <= 0) {
-      document.getElementById("cd-days").textContent = "0";
-      document.getElementById("cd-hours").textContent = "0";
-      document.getElementById("cd-mins").textContent = "0";
-      document.getElementById("cd-secs").textContent = "0";
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
-
-    document.getElementById("cd-days").textContent = days;
-    document.getElementById("cd-hours").textContent = hours;
-    document.getElementById("cd-mins").textContent = mins;
-    document.getElementById("cd-secs").textContent = secs;
-  }
-
-  updateCountdown(); // run immediately so it doesn't show 0 for a second
-  setInterval(updateCountdown, 1000);
-</script>
+  <div id="countdown">
+    <p class="section-eyebrow">Counting down to forever</p>
+    <div class="countdown-grid">
+      <div class="cd-unit"><span class="cd-number" id="cd-days">--</span><span class="cd-label">Days</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-number" id="cd-hours">--</span><span class="cd-label">Hours</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-number" id="cd-mins">--</span><span class="cd-label">Minutes</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span class="cd-number" id="cd-secs">--</span><span class="cd-label">Seconds</span></div>
+    </div>
+  </div>
 
   <!-- OUR STORY -->
   <section id="story">
@@ -546,11 +580,11 @@
       <div class="floral-divider"><span>✾</span></div>
       <div class="story-body">
         <p>
-          Every great love story starts somewhere. Ours started with a chance meeting, a shared laugh, and a cup of chai that somehow lasted three hours. From that moment, we knew this was something worth holding onto.
+          It all started with one conversation that somehow lasted five years. The distance wasn't always measured in oceans. But when life moved her to the US and kept me in India, our love learned a few new skills: converting time zones, celebrating birthdays through screens, surviving unreliable Wi-Fi, and treating airport arrivals like festivals.
         </p>
         <br/>
         <p>
-          Through every adventure, every ordinary Tuesday, and every late-night conversation about nothing and everything — we've chosen each other, over and over. And now, we get to make it official.
+          We grew in different places, under different skies, and on completely opposite schedules. Strangely, we never grew away from each other. After years of counting miles, hours, and "only 37 more days until we meet," we're finally done with the countdown. This is the chapter where we stay.
         </p>
         <br/>
         <p>
@@ -713,8 +747,8 @@
 
   <script>
     // ── Countdown Timer ────────────────────────────
-    // ✏️ CHANGE THIS DATE to your wedding date
-    const weddingDate = new Date('2025-11-01T10:00:00');
+    // ✏️ CHANGE THIS DATE/TIME to your exact wedding muhurtham time
+    const weddingDate = new Date('2027-01-28T09:00:00');
 
     function updateCountdown() {
       const now  = new Date();
@@ -756,6 +790,50 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Tap-to-bloom flower + background music ─────
+    const flowerTrigger = document.getElementById('flowerTrigger');
+    const bgMusic = document.getElementById('bgMusic');
+    const flowerEmojis = ['🌸', '🌺', '🌷', '🌹', '💮', '🏵️', '✾'];
+    let musicStarted = false;
+
+    function spawnFlowers(count = 26) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('span');
+        el.className = 'falling-flower';
+        el.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+        const startLeft = Math.random() * 100;           // vw
+        const drift = (Math.random() * 200 - 100) + 'px'; // sideways drift
+        const spin = (Math.random() * 540 + 180) + 'deg';
+        const size = (1.2 + Math.random() * 1.6).toFixed(2) + 'rem';
+        const duration = (2.8 + Math.random() * 2.6).toFixed(2) + 's';
+        const delay = (Math.random() * 0.6).toFixed(2) + 's';
+
+        el.style.left = startLeft + 'vw';
+        el.style.fontSize = size;
+        el.style.setProperty('--drift', drift);
+        el.style.setProperty('--spin', spin);
+        el.style.animationDuration = duration;
+        el.style.animationDelay = delay;
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), (parseFloat(duration) + parseFloat(delay) + 0.3) * 1000);
+      }
+    }
+
+    flowerTrigger.addEventListener('click', () => {
+      spawnFlowers();
+
+      if (!musicStarted) {
+        bgMusic.volume = 0.55;
+        bgMusic.play().catch(() => {
+          // Autoplay can still be blocked in some browsers until a real user gesture —
+          // this click IS a user gesture, so this should normally succeed.
+        });
+        musicStarted = true;
+      }
+    });
 
     // ── RSVP form ─────────────────────────────────
     document.getElementById('rsvpForm').addEventListener('submit', function(e) {
