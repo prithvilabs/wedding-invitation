@@ -506,7 +506,24 @@
       0%   { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
       100% { transform: translateY(112vh) translateX(var(--drift, 0px)) rotate(var(--spin, 360deg)); opacity: 0; }
     }
-
+.stop-music-btn {
+  margin-top: 1rem;
+  padding: .5rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  color: var(--rose);
+  font-family: var(--ff-body);
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .25s, color .25s;
+}
+.stop-music-btn:hover {
+  background: var(--rose);
+  color: #fff;
+}
     /* ── MOBILE ─────────────────────────────────── */
     @media (max-width: 600px) {
       nav { gap: 1.2rem; flex-wrap: wrap; padding: 1rem; }
@@ -551,6 +568,7 @@
     <!-- Tap-to-bloom flower + music trigger -->
     <div class="flower-trigger" id="flowerTrigger" role="button" aria-label="Tap for flowers and music">🌸</div>
     <p class="flower-hint">tap the flower</p>
+    <button id="stopMusicBtn" class="stop-music-btn" style="display:none;">stop music ✦</button>
 
     <div class="hero-scroll-hint">
       <div class="scroll-line"></div>
@@ -822,18 +840,27 @@
       }
     }
 
-    flowerTrigger.addEventListener('click', () => {
-      spawnFlowers();
+   flowerTrigger.addEventListener('click', () => {
+  spawnFlowers();
 
-      if (!musicStarted) {
-        bgMusic.volume = 0.55;
-        bgMusic.play().catch(() => {
-          // Autoplay can still be blocked in some browsers until a real user gesture —
-          // this click IS a user gesture, so this should normally succeed.
-        });
-        musicStarted = true;
-      }
+  if (!musicStarted) {
+    bgMusic.volume = 0.55;
+    bgMusic.play().then(() => {
+      console.log('Music started playing successfully.');
+    }).catch((err) => {
+      console.error('Music failed to play:', err.name, err.message);
     });
+    musicStarted = true;
+    document.getElementById('stopMusicBtn').style.display = 'inline-block';
+  }
+});
+
+document.getElementById('stopMusicBtn').addEventListener('click', () => {
+  bgMusic.pause();
+  bgMusic.currentTime = 0;
+  musicStarted = false;
+  document.getElementById('stopMusicBtn').style.display = 'none';
+});
 
     // ── RSVP form ─────────────────────────────────
     document.getElementById('rsvpForm').addEventListener('submit', function(e) {
