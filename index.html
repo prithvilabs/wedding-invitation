@@ -313,6 +313,107 @@
     }
     .event-detail { font-size: .88rem; color: #6a4a42; }
 
+    /* Two-card duo layout for Wedding & Reception */
+    .events-grid--duo {
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .events-grid--duo .event-card {
+      padding: 3rem 2rem 2.6rem;
+      background: linear-gradient(160deg, var(--cream) 0%, #FBF1EB 100%);
+    }
+    .events-grid--duo .event-card::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(196,164,107,.18);
+      border-radius: 3px;
+      pointer-events: none;
+    }
+    .events-grid--duo .event-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1.2rem;
+      filter: drop-shadow(0 4px 10px rgba(160,87,74,.15));
+      transition: transform .4s ease;
+    }
+    .events-grid--duo .event-card:hover .event-icon { transform: scale(1.15) rotate(-4deg); }
+    .events-grid--duo .event-name { font-size: 1.85rem; }
+
+    /* Shared venue / map card */
+    .venue-card {
+      max-width: 560px;
+      margin: 2.6rem auto 0;
+      background: var(--cream);
+      border: 1px solid rgba(196,164,107,.3);
+      border-radius: 6px;
+      padding: 2.6rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 34px rgba(62,46,40,.06);
+    }
+    .venue-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--gold), var(--rose));
+    }
+    .venue-card-icon {
+      font-size: 1.9rem;
+      margin-bottom: .6rem;
+      animation: pinBob 2.6s ease-in-out infinite;
+    }
+    @keyframes pinBob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+    .venue-card-eyebrow {
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: .8rem;
+    }
+    .venue-card-name {
+      font-family: var(--ff-display);
+      font-size: 1.9rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--bark);
+    }
+    .venue-card-address {
+      font-size: .85rem;
+      color: var(--leaf);
+      letter-spacing: .04em;
+      margin-top: .3rem;
+    }
+    .venue-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.6rem;
+      padding: .85rem 1.8rem;
+      background: var(--deep-rose);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background .25s, transform .2s, box-shadow .2s;
+    }
+    .venue-card-link:hover {
+      background: var(--rose);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(160,87,74,.28);
+    }
+    .venue-card-arrow { transition: transform .25s; }
+    .venue-card-link:hover .venue-card-arrow { transform: translate(3px, -3px); }
+
     /* ── GALLERY ────────────────────────────────── */
     #gallery { background: var(--cream); }
     .gallery-grid {
@@ -531,6 +632,7 @@
       .form-row { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-grid .g-item:first-child { grid-column: span 2; aspect-ratio: 16/10; }
+      .events-grid--duo { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -620,19 +722,7 @@
         <h2>The Celebrations</h2>
         <div class="floral-divider"><span>✾</span></div>
       </div>
-      <div class="events-grid">
-        <div class="event-card reveal">
-          <div class="event-icon">🌸</div>
-          <div class="event-name">Mehendi</div>
-          <div class="event-meta">Friday · 31 October · 4:00 PM</div>
-          <div class="event-detail">The Family Home<br/>Koramangala, Bengaluru</div>
-        </div>
-        <div class="event-card reveal">
-          <div class="event-icon">🪔</div>
-          <div class="event-name">Sangeet</div>
-          <div class="event-meta">Friday · 31 October · 7:30 PM</div>
-          <div class="event-detail">The Leela Palace<br/>Old Airport Road, Bengaluru</div>
-        </div>
+      <div class="events-grid events-grid--duo">
         <div class="event-card reveal">
           <div class="event-icon">🌹</div>
           <div class="event-name">Wedding</div>
@@ -645,6 +735,17 @@
           <div class="event-meta">Wednesday · 27th January · 7:00 PM</div>
           <div class="event-detail">Vijay Raja Mahal<br/>Medavakkam, Chennai</div>
         </div>
+      </div>
+
+      <div class="venue-card reveal">
+        <div class="venue-card-icon">📍</div>
+        <p class="venue-card-eyebrow">Both celebrations, one beautiful venue</p>
+        <h3 class="venue-card-name">Vijay Raja Mahal</h3>
+        <p class="venue-card-address">Medavakkam, Chennai</p>
+        <a class="venue-card-link" href="https://maps.app.goo.gl/kBU2oJvjdJMF5m5X7" target="_blank" rel="noopener">
+          <span>Open in Google Maps</span>
+          <span class="venue-card-arrow">↗</span>
+        </a>
       </div>
     </div>
   </section>
@@ -815,7 +916,7 @@
     const flowerEmojis = ['🌸', '🌺', '🌷', '🌹', '💮', '🏵️', '✾'];
     let musicStarted = false;
 
-    function spawnFlowers(count = 26) {
+    function spawnFlowers(count = 80) {
       for (let i = 0; i < count; i++) {
         const el = document.createElement('span');
         el.className = 'falling-flower';
