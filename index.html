@@ -1391,7 +1391,7 @@
         el.style.animationDuration = duration;
         el.style.animationDelay = delay;
 
-        document.body.appendChild(el);
+        document.getElementById('gate').appendChild(el);
         setTimeout(() => el.remove(), (parseFloat(duration) + parseFloat(delay) + 0.3) * 1000);
       }
     }
