@@ -679,7 +679,7 @@
       position: fixed;
       top: -60px;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 10001;
       will-change: transform, opacity;
       animation-name: flowerFall;
       animation-timing-function: ease-in;
@@ -1391,7 +1391,7 @@
         el.style.animationDuration = duration;
         el.style.animationDelay = delay;
 
-        document.getElementById('gate').appendChild(el);
+        document.body.appendChild(el);
         setTimeout(() => el.remove(), (parseFloat(duration) + parseFloat(delay) + 0.3) * 1000);
       }
     }
