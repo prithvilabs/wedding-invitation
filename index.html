@@ -713,14 +713,14 @@
       position: fixed; inset: 0; z-index: 10000;
       display: flex; align-items: center; justify-content: center;
       background: radial-gradient(ellipse 90% 68% at 50% 22%, #131c34 0%, #0A1224 55%, #060910 100%);
-      transition: background 2.6s ease, opacity 1.2s ease;
+      transition: background 3.2s cubic-bezier(.22,.61,.36,1), opacity 1.2s ease;
       overflow: hidden;
       opacity: 0;
       animation: gateFadeIn 1.1s ease forwards;
     }
     @keyframes gateFadeIn { to { opacity: 1; } }
     #gate.gate-bloom {
-      background: radial-gradient(ellipse 85% 60% at 50% 36%, #a63d63 0%, #4c1930 78%);
+      background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(242,216,204,.96) 0%, rgba(250,240,235,.98) 55%, #FDF7F4 100%);
     }
     #gate.gate-hidden { opacity: 0; pointer-events: none; }
     #gate::before {
@@ -1556,7 +1556,7 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
         gate.classList.add('gate-hidden');
         document.body.classList.remove('gate-active');
         setTimeout(() => gate.remove(), 1300);
-      }, 2700);
+      }, 3400);
     });
 
     // ── RSVP form ─────────────────────────────────
