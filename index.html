@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prithvi&Harshini · Wedding</title>
+  <title>Your Names · Wedding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -804,7 +804,7 @@
   <div id="gate">
     <div class="gate-arch"><div class="gate-lamp"></div></div>
     <div class="gate-content">
-      <p class="gate-eyebrow">We're Getting Married</p>
+      <p class="gate-eyebrow">Together with their families</p>
       <h1 class="gate-names">Prithvi <span class="gate-amp">&amp;</span> Harshini</h1>
       <p class="gate-date">28th January · 2027</p>
       <p class="gate-venue">Vijay Raja Mahal, Medavakkam</p>
@@ -917,7 +917,7 @@
         <p class="venue-card-eyebrow">Both celebrations, one beautiful venue</p>
         <h3 class="venue-card-name">Vijay Raja Mahal</h3>
         <p class="venue-card-address">Medavakkam, Chennai</p>
-        <a class="venue-card-link" href="https://www.google.com/maps/search/?api=1&query=Vijay+Raja+Thirumana+Mandapam,+Medavakkam,+Chennai" target="_blank" rel="noopener">
+        <a class="venue-card-link" href="https://www.google.com/maps/search/?api=1&query=Vijay+Raja+Thirumana+Mandapam%2C+Medavakkam%2C+Chennai" target="_blank" rel="noopener">
           <span>Open in Google Maps</span>
           <span class="venue-card-arrow">↗</span>
         </a>
@@ -968,7 +968,7 @@
         <p class="section-eyebrow">Join the celebration</p>
         <h2 class="rsvp-cta-title">Will You Join Us?</h2>
         <p class="rsvp-cta-text">
-          We've saved a seat for you at our table, in our hearts, and under a sky full of celebration. Come be part of the days that begin our forever.
+          We've saved a seat for you — at our table, in our hearts, and under a sky full of celebration. Come be part of the days that begin our forever.
         </p>
         <a id="whatsappRsvp" class="btn-whatsapp" href="#" target="_blank" rel="noopener">
           <span>📞</span> Yes, I'll be there
@@ -981,6 +981,10 @@
           <button id="addAppleCal" class="btn-calendar" type="button">📅 Add to Apple Calendar</button>
         </div>
       </div>
+
+      <p class="rsvp-subtitle">
+        Please let us know you're coming by <strong>15 January 2027</strong> so we can save a seat just for you.
+      </p>
 
       <form class="rsvp-form" id="rsvpForm">
         <div class="form-row">
@@ -1022,7 +1026,7 @@
           <label for="events-check">Events Attending</label>
           <select id="events-check">
             <option value="all">All events</option>
-            <option value="wedding">Wedding only</option>
+            <option value="wedding">Wedding &amp; Reception only</option>
             <option value="reception">Reception only</option>
             <option value="select">I'll let you know separately</option>
           </select>
@@ -1106,7 +1110,7 @@
     const flowerEmojis = ['🌸', '🌺', '🌷', '🌹', '💮', '🏵️', '✾'];
     let musicStarted = false;
 
-    function spawnFlowers(count = 80) {
+    function spawnFlowers(count = 45) {
       for (let i = 0; i < count; i++) {
         const el = document.createElement('span');
         el.className = 'falling-flower';
@@ -1178,6 +1182,27 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
     // ── RSVP form ─────────────────────────────────
     document.getElementById('rsvpForm').addEventListener('submit', function(e) {
       e.preventDefault();
+
+      const guestsSelect = document.getElementById('guests');
+      const attendSelect = document.getElementById('attend');
+      const eventsSelect = document.getElementById('events-check');
+
+      const formData = new FormData();
+      formData.append('entry.100854444', document.getElementById('fname').value);
+      formData.append('entry.430974511', document.getElementById('lname').value);
+      formData.append('entry.614780823', document.getElementById('email').value);
+      formData.append('entry.1661409382', guestsSelect.options[guestsSelect.selectedIndex].text);
+      formData.append('entry.1414549551', attendSelect.value === 'yes' ? 'Yes' : 'No');
+      formData.append('entry.1690944612', eventsSelect.options[eventsSelect.selectedIndex].text);
+      formData.append('entry.413839572', document.getElementById('dietary').value);
+      formData.append('entry.1558009428', document.getElementById('message').value);
+
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSeZlGw7GZk7Y3-MUe1HwWY6J19PT1lNvjdqdFxCmy1r5AvfiQ/formResponse', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      });
+
       this.style.display = 'none';
       document.getElementById('rsvpSuccess').style.display = 'block';
       // 💡 Hook up a backend/Formspree/Netlify Forms here to capture responses
@@ -1185,7 +1210,7 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
 
     // ── RSVP CTA: WhatsApp + Calendar buttons ──────
     // ✏️ Replace with your actual WhatsApp number in international format, digits only (e.g. 91XXXXXXXXXX)
-    const rsvpWhatsAppNumber = '919025228713';
+    const rsvpWhatsAppNumber = '91XXXXXXXXXX';
     const rsvpMessage = encodeURIComponent(
       "Hi! I'm excited to confirm my attendance at Prithvi & Harshini's wedding on 28th January 2027 🌸"
     );
