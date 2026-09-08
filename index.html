@@ -8,24 +8,33 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    /* ── TOKENS ─────────────────────────────────── */
+  /* ── TOKENS ─────────────────────────────────── */
     :root {
-  /* South Indian Traditional Palette */
-  --kumkum:      #7B1113;
-  --deep-maroon: #52080A;
-  --haldi-gold:  #DAA520;
-  --temple-gold: #C59B27;
-  --gold-glow:   #F3E5AB;
-  --silk-ivory:  #FFFBF2;
-  --warm-sand:   #F9F0E1;
-  --leaf-green:  #2E5D32;
-  --bark:        #3A1F1D;
+      /* South Indian Festive Palette */
+      --kumkum:      #7B1113;
+      --deep-maroon: #52080A;
+      --haldi-gold:  #DAA520;
+      --temple-gold: #C59B27;
+      --gold-glow:   #F3E5AB;
+      --silk-ivory:  #FFFBF2;
+      --warm-sand:   #F6EADB;
+      --leaf-green:  #2E5D32;
+      --bark:        #3A1F1D;
 
-  --ff-display: 'Cormorant Garamond', Georgia, serif;
-  --ff-display-2: 'Playfair Display', Georgia, serif;
-  --ff-body:    'Jost', sans-serif;
-}
+      /* Aliases to replace pale pastel tokens */
+      --cream:       #FFFBF2;
+      --petal:       #F7EDE0;
+      --blush:       #F0DAC5;
+      --rose:        #8B151B;
+      --deep-rose:   #7B1113;
+      --gold:        #C59B27;
+      --gold-light:  #DAA520;
+      --leaf:        #2E5D32;
 
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-display-2: 'Playfair Display', Georgia, serif;
+      --ff-body:    'Jost', sans-serif;
+    }
     /* ── RESET ──────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -398,6 +407,94 @@
       font-size: .95rem;
       line-height: 1.85;
       color: #5a3e38;
+    }
+
+    /* ── SOUTH INDIAN TEMPLE & TORAN DECORATIONS ── */
+    .toran-border {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 32px;
+      background-image: radial-gradient(circle at 12px 0px, #D84315 8px, #FFB300 12px, transparent 13px);
+      background-size: 24px 28px;
+      opacity: 0.85;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .temple-bg {
+      position: relative;
+      background-color: var(--warm-sand) !important;
+    }
+    .temple-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' opacity='0.05'%3E%3Cpath fill='%237B1113' d='M400 50 L440 130 L360 130 Z M350 130 H450 V190 H350 Z M330 190 H470 V270 H330 Z M310 270 H490 V370 H310 Z M280 370 H520 V510 H280 Z'/%3E%3C/svg%3E");
+      background-repeat: repeat-y;
+      background-position: center top;
+      background-size: 460px auto;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .kolam-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      margin: 2rem auto;
+    }
+    .kolam-divider::before,
+    .kolam-divider::after {
+      content: '';
+      flex: 1;
+      max-width: 140px;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, var(--temple-gold));
+    }
+    .kolam-divider::after {
+      background: linear-gradient(to left, transparent, var(--temple-gold));
+    }
+    .kolam-symbol {
+      display: inline-block;
+      font-size: 1.6rem;
+      color: var(--temple-gold);
+      animation: rotateKolam 24s linear infinite;
+    }
+    @keyframes rotateKolam {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Traditional Rich Colors for Flip Cards */
+    .event-flip-front {
+      background: linear-gradient(165deg, #FFFFFF 0%, #FFF8EE 100%) !important;
+      border: 1.5px solid rgba(197, 155, 39, 0.45) !important;
+      box-shadow: 0 10px 28px rgba(82, 8, 10, 0.08) !important;
+    }
+    .event-flip-front::before {
+      background: linear-gradient(90deg, var(--haldi-gold), var(--kumkum), var(--haldi-gold)) !important;
+      height: 4px !important;
+    }
+    .event-flip-card .event-name {
+      color: var(--kumkum) !important;
+      font-weight: 600 !important;
+    }
+    .event-flip-card .event-meta {
+      color: #B85D19 !important;
+      font-weight: 500 !important;
+    }
+    .event-flip-back {
+      background: linear-gradient(160deg, #FFFFFF 0%, #FBF2E3 100%) !important;
+      border: 1.5px solid var(--temple-gold) !important;
+    }
+    .event-flip-map-btn {
+      background: var(--kumkum) !important;
+      color: #fff !important;
+      border: 1px solid var(--haldi-gold) !important;
+    }
+    .event-flip-map-btn:hover {
+      background: var(--deep-maroon) !important;
     }
 
     /* ── OUR STORY ──────────────────────────────── */
@@ -1433,12 +1530,15 @@
   </section>
 
   <!-- EVENTS -->
-  <section id="events">
+<section id="events" class="temple-bg">
+    <div class="toran-border"></div>
     <div class="section-inner">
       <div class="reveal">
-        <p class="section-eyebrow">Join us for</p>
+        <p class="section-eyebrow" style="color: var(--kumkum);">Subham · Muhurtham</p>
         <h2>The Celebrations</h2>
-        <div class="floral-divider"><span>✾</span></div>
+        <div class="kolam-divider">
+          <span class="kolam-symbol">☸</span>
+        </div>
       </div>
       <div class="events-grid events-flip-grid">
         <div class="event-flip-card reveal" tabindex="0" role="button" aria-label="Chennai Reception — tap for map">
@@ -1743,7 +1843,7 @@
     // ── Tap-to-bloom flower + background music ─────
     const flowerTrigger = document.getElementById('flowerTrigger');
     const bgMusic = document.getElementById('bgMusic');
-    const flowerEmojis = ['🌸', '🌺', '🌷', '🌹', '💮', '🏵️', '✾'];
+    const flowerEmojis = ['🌼', '🏵️', '🌸', '🪔', '🌿', '✨'];
     let musicStarted = false;
 
     function spawnFlowers(count = 45) {
