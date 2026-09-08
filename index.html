@@ -423,16 +423,19 @@
 
     .temple-bg {
       position: relative;
-      background-color: var(--warm-sand) !important;
+      background-color: #F8EFE4 !important; /* Rich sandal-silk tone */
+      overflow: hidden;
     }
+
+    /* Traditional Temple Gopuram Silhouette Background */
     .temple-bg::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' opacity='0.05'%3E%3Cpath fill='%237B1113' d='M400 50 L440 130 L360 130 Z M350 130 H450 V190 H350 Z M330 190 H470 V270 H330 Z M310 270 H490 V370 H310 Z M280 370 H520 V510 H280 Z'/%3E%3C/svg%3E");
-      background-repeat: repeat-y;
-      background-position: center top;
-      background-size: 460px auto;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 900'%3E%3Cg fill='%237B1113' opacity='0.16'%3E%3C!-- Kalasam Top --%3E%3Ccircle cx='400' cy='60' r='10'/%3E%3Cpath d='M396 70 h8 v18 h-8 z'/%3E%3Cpath d='M382 88 h36 l-6 24 h-24 z'/%3E%3C!-- Tier 1 --%3E%3Cpath d='M360 112 h80 l12 50 h-104 z'/%3E%3C!-- Tier 2 --%3E%3Cpath d='M340 162 h120 l14 55 h-148 z'/%3E%3C!-- Tier 3 --%3E%3Cpath d='M320 217 h160 l16 60 h-192 z'/%3E%3C!-- Tier 4 --%3E%3Cpath d='M295 277 h210 l18 70 h-246 z'/%3E%3C!-- Tier 5 --%3E%3Cpath d='M265 347 h270 l20 80 h-310 z'/%3E%3C!-- Tier 6 Base --%3E%3Cpath d='M235 427 h330 l22 90 h-374 z'/%3E%3C!-- Gateway Pillars & Arch --%3E%3Cpath d='M220 517 h360 v220 h-90 v-120 a90 90 0 0 0 -180 0 v120 h-90 z'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center 30px;
+      background-size: min(650px, 90vw) auto;
       pointer-events: none;
       z-index: 0;
     }
