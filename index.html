@@ -1147,7 +1147,17 @@
       background-size: 70px 70px;
       opacity: .8;
     }
-    .gate-door--left { border-right: 1px solid rgba(217,189,132,.5); }
+.gate-door--left {
+  border-right: 1px solid rgba(217,189,132,.5);
+  background-image: url('temple_doors.png');
+  background-size: 200% 100%;
+  background-position: left center;
+}
+    .gate-door--right {
+  background-image: url('temple_doors.png');
+  background-size: 200% 100%;
+  background-position: right center;
+}
     .gate-door--left::after  { background-position: bottom left; }
     .gate-door--right::after { background-position: bottom right; transform: scaleX(-1); }
     .gate-door--left.gate-door-open  { transform: translateX(-102%); }
