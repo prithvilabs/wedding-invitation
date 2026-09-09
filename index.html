@@ -1040,7 +1040,7 @@
     #gate {
       position: fixed; inset: 0; z-index: 10000;
       display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(ellipse 90% 68% at 50% 22%, #131c34 0%, #0A1224 55%, #060910 100%);
+      background: radial-gradient(ellipse 90% 68% at 50% 22%, #E8D2AC 0%, #D9BD84 55%, #C4A46B 100%);
       transition: background 5s cubic-bezier(.22,.61,.36,1), opacity 1.2s ease;
       overflow: hidden;
       opacity: 0;
@@ -1111,10 +1111,101 @@
       background: linear-gradient(to bottom, transparent, var(--gold));
       transform: translateX(-50%);
     }
+
+    /* ── ENTRY GATE: TEMPLE DOORS ──────────────────── */
+    .gate-doors-wrap {
+      position: relative; z-index: 1;
+      width: min(82vw, 660px);
+      height: min(80vh, 640px);
+      display: flex;
+      border-radius: 12px 12px 4px 4px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 10px rgba(232,213,163,.12),
+        0 0 0 11px rgba(196,164,107,.4),
+        0 30px 80px rgba(0,0,0,.35);
+    }
+    .gate-door {
+      position: relative;
+      width: 50%; height: 100%;
+      background:
+        linear-gradient(160deg, #1B4438 0%, #0F2B22 55%, #0A1F19 100%);
+      transition: transform 2s cubic-bezier(.65,0,.35,1);
+      will-change: transform;
+    }
+    .gate-door::before {
+      content: '';
+      position: absolute; inset: 14px;
+      border: 1px solid rgba(217,189,132,.55);
+      border-radius: 4px;
+    }
+    .gate-door::after {
+      content: '';
+      position: absolute; inset: 26px;
+      background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%0A%3Cg%20fill%3D%22none%22%20stroke%3D%22%23D9BD84%22%20stroke-width%3D%221.2%22%20opacity%3D%22.9%22%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2230%22/%3E%0A%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2220%22/%3E%0A%3Cpath%20d%3D%22M50%2020%20L50%2010%20M50%2090%20L50%2080%20M20%2050%20L10%2050%20M90%2050%20L80%2050%22/%3E%0A%3Cpath%20d%3D%22M29%2029%20L22%2022%20M71%2029%20L78%2022%20M29%2071%20L22%2078%20M71%2071%20L78%2078%22/%3E%0A%3Cpath%20d%3D%22M50%2030%20C%2058%2038%2C%2058%2046%2C%2050%2050%20C%2042%2046%2C%2042%2038%2C%2050%2030%20Z%22/%3E%0A%3Cpath%20d%3D%22M50%2070%20C%2042%2062%2C%2042%2054%2C%2050%2050%20C%2058%2054%2C%2058%2062%2C%2050%2070%20Z%22/%3E%0A%3Cpath%20d%3D%22M30%2050%20C%2038%2042%2C%2046%2042%2C%2050%2050%20C%2046%2058%2C%2038%2058%2C%2030%2050%20Z%22/%3E%0A%3Cpath%20d%3D%22M70%2050%20C%2062%2058%2C%2054%2058%2C%2050%2050%20C%2054%2042%2C%2062%2042%2C%2070%2050%20Z%22/%3E%0A%3C/g%3E%0A%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: 70px 70px;
+      opacity: .8;
+    }
+    .gate-door--left { border-right: 1px solid rgba(217,189,132,.5); }
+    .gate-door--left::after  { background-position: bottom left; }
+    .gate-door--right::after { background-position: bottom right; transform: scaleX(-1); }
+    .gate-door--left.gate-door-open  { transform: translateX(-102%); }
+    .gate-door--right.gate-door-open { transform: translateX(102%); }
+    .gate-door-seam {
+      position: absolute; top: 6%; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 22px;
+      background: linear-gradient(to bottom, transparent, var(--gold-light));
+      z-index: 2; pointer-events: none;
+    }
+    .gate-door-seam::before {
+      content: '◇';
+      position: absolute; top: -10px; left: 50%; transform: translate(-50%, -100%);
+      color: var(--gold-light); font-size: .7rem;
+    }
+    .gate-doors-wrap.gate-doors-hidden { opacity: 0; transition: opacity .8s ease .6s; }
+
+    /* ── ENTRY GATE: INVITE COPY ────────────────────── */
+    .gate-invite-heading {
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 500; font-style: normal;
+      color: var(--petal);
+      margin: 1.1rem 0 .5rem;
+    }
+    .gate-invite-sub {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: rgba(250,240,235,.8);
+      margin-bottom: 1.4rem;
+    }
+    .gate-open-btn {
+      display: inline-flex; align-items: center; gap: .9rem;
+      margin-top: 1.6rem;
+      padding: 1rem 2.6rem;
+      background: linear-gradient(135deg, #F3E3B8, #D9BD84);
+      color: #1B4438;
+      border: none; border-radius: 40px;
+      font-family: var(--ff-body);
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .3s ease, box-shadow .3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gate-open-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(0,0,0,.32); }
+    .gate-open-btn span.sparkle { font-size: .65rem; opacity: .8; }
+    .gate-open-btn.gate-open-btn-tapped { opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+
     .gate-content {
-      position: relative; z-index: 2; text-align: center; padding: 2rem;
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
       transition: opacity 1.3s ease, transform 1.3s ease;
     }
+    .gate-doors-wrap { position: relative; }
     .gate-content.gate-exit {
       opacity: 0;
       transform: scale(1.08) translateY(-16px);
@@ -1295,8 +1386,8 @@
 
     /* ── GATE: REDUCED MOTION ─────────────────────── */
     @media (prefers-reduced-motion: reduce) {
-      #gate, #gate::before, .gate-arch-outline, .gate-arch-sweep, .gate-vine,
-      .gate-eyebrow, .gate-names, .gate-date, .gate-venue, .gate-lotus, .gate-hint,
+      #gate, #gate::before,
+      .gate-eyebrow, .gate-invite-heading, .gate-invite-sub, .gate-date, .gate-open-btn, .gate-hint,
       .gate-mist, .firefly, .gate-petal, .butterfly, .butterfly-wing,
       .lotus-burst-petal, .gate-content {
         animation: none !important;
@@ -1304,8 +1395,8 @@
         opacity: 1 !important;
         transform: none !important;
       }
-      .gate-vine--right { transform: scaleX(-1) !important; }
       .gate-flash { animation: none !important; opacity: 0 !important; }
+      .gate-door { transition: none !important; }
     }
 
     /* ── MOBILE ─────────────────────────────────── */
@@ -1326,84 +1417,22 @@
   <div id="gate">
     <div class="gate-mist"></div>
     <div class="gate-flash" id="gateFlash"></div>
-    <div class="gate-vine gate-vine--left">
-      <svg viewBox="0 0 200 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="lotusFillL" cx="40%" cy="35%" r="70%">
-            <stop offset="0%" stop-color="#E8C9C0" stop-opacity=".65"/>
-            <stop offset="100%" stop-color="#B97D6E" stop-opacity=".25"/>
-          </radialGradient>
-        </defs>
-        <g stroke="#C4A46B" stroke-width="1.1" stroke-linecap="round" opacity=".68">
-          <path d="M10 335 C 20 260, 5 210, 35 160 C 55 128, 45 95, 65 60"/>
-          <path d="M35 160 C 55 150, 68 138, 78 118"/>
-          <path d="M35 235 C 15 225, 8 210, 12 195"/>
-          <path d="M25 275 C 42 268, 52 255, 55 238"/>
-          <ellipse cx="80" cy="112" rx="9" ry="16" transform="rotate(28 80 112)"/>
-          <ellipse cx="58" cy="232" rx="8" ry="15" transform="rotate(-18 58 232)"/>
-          <ellipse cx="14" cy="192" rx="7" ry="13" transform="rotate(50 14 192)"/>
-          <circle cx="66" cy="58" r="4"/>
-          <circle cx="70" cy="45" r="3"/>
-        </g>
-        <g opacity=".8">
-          <path d="M65 60 C 50 48, 48 28, 65 15 C 82 28, 80 48, 65 60 Z" fill="url(#lotusFillL)" stroke="#C4A46B" stroke-width="1"/>
-          <path d="M65 58 C 55 50, 55 35, 65 24 C 75 35, 75 50, 65 58 Z" fill="none" stroke="#C4A46B" stroke-width=".7" opacity=".7"/>
-          <path d="M46 32 C 40 22, 46 10, 60 12 C 55 22, 52 30, 46 32 Z" fill="url(#lotusFillL)" stroke="#C4A46B" stroke-width=".8"/>
-          <path d="M84 32 C 90 22, 84 10, 70 12 C 75 22, 78 30, 84 32 Z" fill="url(#lotusFillL)" stroke="#C4A46B" stroke-width=".8"/>
-        </g>
-      </svg>
-    </div>
-    <div class="gate-vine gate-vine--right">
-      <svg viewBox="0 0 200 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <radialGradient id="lotusFillR" cx="40%" cy="35%" r="70%">
-            <stop offset="0%" stop-color="#E8C9C0" stop-opacity=".65"/>
-            <stop offset="100%" stop-color="#B97D6E" stop-opacity=".25"/>
-          </radialGradient>
-        </defs>
-        <g stroke="#C4A46B" stroke-width="1.1" stroke-linecap="round" opacity=".68">
-          <path d="M10 335 C 20 260, 5 210, 35 160 C 55 128, 45 95, 65 60"/>
-          <path d="M35 160 C 55 150, 68 138, 78 118"/>
-          <path d="M35 235 C 15 225, 8 210, 12 195"/>
-          <path d="M25 275 C 42 268, 52 255, 55 238"/>
-          <ellipse cx="80" cy="112" rx="9" ry="16" transform="rotate(28 80 112)"/>
-          <ellipse cx="58" cy="232" rx="8" ry="15" transform="rotate(-18 58 232)"/>
-          <ellipse cx="14" cy="192" rx="7" ry="13" transform="rotate(50 14 192)"/>
-          <circle cx="66" cy="58" r="4"/>
-          <circle cx="70" cy="45" r="3"/>
-        </g>
-        <g opacity=".8">
-          <path d="M65 60 C 50 48, 48 28, 65 15 C 82 28, 80 48, 65 60 Z" fill="url(#lotusFillR)" stroke="#C4A46B" stroke-width="1"/>
-          <path d="M65 58 C 55 50, 55 35, 65 24 C 75 35, 75 50, 65 58 Z" fill="none" stroke="#C4A46B" stroke-width=".7" opacity=".7"/>
-          <path d="M46 32 C 40 22, 46 10, 60 12 C 55 22, 52 30, 46 32 Z" fill="url(#lotusFillR)" stroke="#C4A46B" stroke-width=".8"/>
-          <path d="M84 32 C 90 22, 84 10, 70 12 C 75 22, 78 30, 84 32 Z" fill="url(#lotusFillR)" stroke="#C4A46B" stroke-width=".8"/>
-        </g>
-      </svg>
-    </div>
-    <div class="gate-arch">
-      <svg viewBox="0 0 240 320" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="archSweepGradient" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#C4A46B" stop-opacity="0"/>
-            <stop offset="50%" stop-color="#FFE3AE" stop-opacity=".9"/>
-            <stop offset="100%" stop-color="#C4A46B" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path class="gate-arch-outline" d="M20 316 L20 140 A100 100 0 0 1 220 140 L220 316"/>
-        <path class="gate-arch-sweep" d="M20 316 L20 140 A100 100 0 0 1 220 140 L220 316"/>
-      </svg>
-      <div class="gate-lamp"></div>
-    </div>
     <div class="gate-fireflies" id="gateFireflies"></div>
     <div class="gate-butterflies" id="gateButterflies"></div>
     <div class="gate-petals" id="gatePetals"></div>
-    <div class="gate-content">
-      <p class="gate-eyebrow">We're Getting Married</p>
-      <h1 class="gate-names">Prithvi <span class="gate-amp">&amp;</span> Harshini</h1>
-      <p class="gate-date">28th January · 2027</p>
-      <p class="gate-venue">Vijay Raja Mahal, Medavakkam</p>
-      <button id="gateLotus" class="gate-lotus" aria-label="Tap the lotus to enter">🪷</button>
-      <p class="gate-hint">Tap the lotus to join us</p>
+    <div class="gate-doors-wrap" id="gateDoorsWrap">
+      <div class="gate-door gate-door--left" id="gateDoorLeft"></div>
+      <div class="gate-door gate-door--right" id="gateDoorRight"></div>
+      <div class="gate-door-seam"></div>
+      <div class="gate-content">
+        <p class="gate-eyebrow">With all our hearts</p>
+        <h1 class="gate-invite-heading">You are invited</h1>
+        <p class="gate-invite-sub">to celebrate with us</p>
+        <p class="gate-date">28 · 01 · 2027</p>
+        <button id="gateLotus" class="gate-open-btn" aria-label="Open the invitation">
+          <span class="sparkle">✦</span> Open Invitation <span class="sparkle">✦</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -2004,15 +2033,15 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
     gateLotus.addEventListener('click', () => {
       if (gatePetalInterval) clearTimeout(gatePetalInterval);
 
-      // Stage 1 (0ms): lotus flashes, releases petals, light begins washing over the scene
+      // Stage 1 (0ms): the button flashes, releases petals, light begins washing over the doors
       const rect = gateLotus.getBoundingClientRect();
       const originX = rect.left + rect.width / 2;
       const originY = rect.top + rect.height / 2;
-      gateLotus.classList.add('gate-lotus-tapped');
+      gateLotus.classList.add('gate-open-btn-tapped');
       releaseLotusBurst(originX, originY, 18);
       document.getElementById('gateFlash').classList.add('gate-flash-active');
 
-      // Stage 2 (150ms): background begins its slow bloom, text dissolves away
+      // Stage 2 (300ms): the invitation text dissolves away, warm light begins to bloom
       setTimeout(() => {
         gate.classList.add('gate-bloom');
         document.querySelector('.gate-content').classList.add('gate-exit');
@@ -2025,11 +2054,17 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
         document.getElementById('stopMusicBtn').style.display = 'inline-block';
       }
 
-      // Stage 3 (600ms / 1300ms): the big flower shower flows in, in two overlapping waves
-      setTimeout(() => spawnFlowers(16), 600);
-      setTimeout(() => spawnFlowers(22), 1300);
+      // Stage 3 (900ms): the temple doors swing open, slow and deliberate
+      setTimeout(() => {
+        document.getElementById('gateDoorLeft').classList.add('gate-door-open');
+        document.getElementById('gateDoorRight').classList.add('gate-door-open');
+      }, 900);
 
-      // Stage 4 (~3400ms): scene fully bloomed — fade the whole gate out to reveal the site
+      // Stage 4 (1400ms / 2100ms): flowers flow through the opening doors, in two overlapping waves
+      setTimeout(() => spawnFlowers(16), 1400);
+      setTimeout(() => spawnFlowers(22), 2100);
+
+      // Stage 5 (~3400ms): doors are fully open — fade the whole gate out to reveal the site
       setTimeout(() => {
         gate.classList.add('gate-hidden');
         document.body.classList.remove('gate-active');
