@@ -6,7 +6,7 @@
   <title>Prithvi | Harshini · Wedding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&family=Noto+Serif+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
   /* ── TOKENS ─────────────────────────────────── */
     :root {
@@ -39,6 +39,7 @@
       --ff-display: 'Cormorant Garamond', Georgia, serif;
       --ff-display-2: 'Playfair Display', Georgia, serif;
       --ff-body:    'Jost', sans-serif;
+      --ff-tamil:   'Noto Serif Tamil', 'Latha', serif;
     }
     /* ── RESET ──────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1638,6 +1639,251 @@
       }
       .btn-whatsapp::after, .btn-rsvp::after { display: none !important; }
     }
+
+    /* ══════════════════════════════════════════════════════════
+       TAMIL NADU HINDU ENHANCEMENTS
+       ══════════════════════════════════════════════════════════ */
+
+    /* Tamil script helper */
+    .ta { font-family: var(--ff-tamil); font-weight: 500; }
+
+    /* Bilingual eyebrow — Tamil line under the English label */
+    .section-eyebrow .ta-sub {
+      display: block;
+      font-family: var(--ff-tamil);
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: none;
+      color: var(--kumkum);
+      margin-top: .35rem;
+    }
+
+    /* ── INVOCATION + INVITATION SECTION ─────────────────────── */
+    .invocation .section-inner { position: relative; z-index: 1; text-align: center; }
+    .invocation { background-color: #FBF3E4 !important; }
+
+    .invoke-emblem {
+      width: clamp(130px, 24vw, 180px);
+      margin: 0 auto .4rem;
+      filter: drop-shadow(0 6px 18px rgba(200,138,18,.28));
+      opacity: 0; transform: translateY(14px);
+    }
+    .invocation.in-view .invoke-emblem { animation: fadeUp 1s .1s ease forwards; }
+    .invoke-emblem svg { width: 100%; height: auto; display: block; }
+    .ganesha-halo { transform-origin: 110px 120px; animation: haloSpin 60s linear infinite; }
+    @keyframes haloSpin { to { transform: rotate(360deg); } }
+
+    .invoke-tamil {
+      font-family: var(--ff-tamil);
+      font-size: clamp(1.15rem, 3.4vw, 1.6rem);
+      font-weight: 600;
+      color: var(--kumkum);
+      letter-spacing: .02em;
+      margin-top: .2rem;
+    }
+    .invoke-om {
+      font-size: 1.9rem;
+      color: var(--temple-gold);
+      line-height: 1;
+      margin: .5rem 0 .2rem;
+    }
+    .invoke-slokam {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: clamp(1rem, 2.6vw, 1.28rem);
+      line-height: 1.9;
+      color: var(--deep-maroon);
+      max-width: 40ch;
+      margin: .6rem auto 0;
+    }
+    .invoke-meaning {
+      font-size: .82rem;
+      color: #7a5a44;
+      max-width: 46ch;
+      margin: .8rem auto 0;
+      font-style: italic;
+    }
+
+    /* ── KOLAM ART ───────────────────────────────────────────── */
+    .kolam-art {
+      width: clamp(90px, 18vw, 130px);
+      margin: 2.2rem auto;
+      opacity: .9;
+    }
+    .kolam-art svg { width: 100%; height: auto; display: block; }
+    .kolam-art .kolam-spin { transform-origin: 70px 70px; animation: haloSpin 48s linear infinite; }
+
+    /* ── FAMILY INVITATION ───────────────────────────────────── */
+    .invite-blessing {
+      max-width: 52ch;
+      margin: 1.4rem auto 0;
+      color: #5a3e38;
+      font-size: .98rem;
+    }
+    .family-invite {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1rem, 5vw, 3rem);
+      flex-wrap: wrap;
+      margin: 2.4rem auto 0;
+      max-width: 640px;
+    }
+    .family-col { flex: 1 1 220px; min-width: 200px; }
+    .family-role {
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--peacock);
+      margin-bottom: .5rem;
+    }
+    .family-names {
+      font-family: var(--ff-display);
+      font-size: 1.32rem;
+      font-weight: 500;
+      color: var(--bark);
+      line-height: 1.35;
+    }
+    .family-place {
+      font-size: .8rem;
+      color: #8a6a54;
+      margin-top: .25rem;
+      font-style: italic;
+    }
+    .family-amp {
+      font-size: 1.4rem;
+      color: var(--temple-gold);
+      flex: 0 0 auto;
+    }
+    @media (max-width: 560px) { .family-amp { transform: rotate(90deg); } }
+
+    .couple-tamil {
+      margin-top: 2.4rem;
+      font-family: var(--ff-tamil);
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-weight: 700;
+      color: var(--kumkum);
+      line-height: 1.3;
+    }
+    .couple-tamil .couple-amp {
+      font-family: var(--ff-display);
+      color: var(--temple-gold);
+      font-weight: 400;
+      margin: 0 .3em;
+    }
+
+    /* ── MUHURTHAM CARD ──────────────────────────────────────── */
+    .muhurtham-card {
+      margin: 2.8rem auto 0;
+      max-width: 420px;
+      padding: 2.2rem 1.8rem 2rem;
+      background: linear-gradient(165deg, #FFFDF8 0%, #FBF1DD 100%);
+      border: 1.5px solid rgba(200,138,18,.5);
+      border-radius: 8px;
+      box-shadow: 0 14px 38px rgba(94,10,12,.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .muhurtham-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--haldi-gold), var(--kumkum), var(--haldi-gold));
+    }
+    .muhurtham-kalasam { width: 64px; margin: 0 auto .6rem; }
+    .muhurtham-kalasam svg { width: 100%; height: auto; display: block; }
+    .muhurtham-label {
+      font-family: var(--ff-tamil);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--peacock-deep);
+      letter-spacing: .02em;
+    }
+    .muhurtham-time {
+      font-family: var(--ff-display);
+      font-size: clamp(1.9rem, 6vw, 2.6rem);
+      font-weight: 600;
+      color: var(--kumkum);
+      line-height: 1.1;
+      margin: .5rem 0 .2rem;
+    }
+    .muhurtham-date {
+      font-size: .82rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--leaf);
+      margin-bottom: .5rem;
+    }
+    .muhurtham-venue {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: #6a4a3a;
+    }
+
+    /* Editable-field hint — remove the .placeholder class once you fill these in */
+    .placeholder {
+      background: rgba(245,179,1,.14);
+      border-bottom: 1px dashed rgba(162,13,21,.5);
+      padding: 0 .15em;
+    }
+
+    /* ── PEACOCK / MANGO CORNER MOTIFS (invitation section) ──── */
+    .invocation::after {
+      content: '';
+      position: absolute; bottom: 8px; right: 10px;
+      width: 120px; height: 120px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%230E7C6E' stroke-width='1.6' stroke-linecap='round' opacity='.5'%3E%3Cpath d='M60 108 C 56 84 70 76 74 58 C 78 40 66 30 60 18'/%3E%3Cpath d='M60 18 C 54 30 42 40 46 58 C 50 76 64 84 60 108'/%3E%3Cellipse cx='60' cy='16' rx='7' ry='10'/%3E%3Ccircle cx='60' cy='16' r='3' fill='%23C2185B' stroke='none'/%3E%3Cpath d='M74 58 C 90 54 98 66 96 80' /%3E%3Cpath d='M46 58 C 30 54 22 66 24 80'/%3E%3Ccircle cx='96' cy='82' r='4' fill='%23F5B301' stroke='none'/%3E%3Ccircle cx='24' cy='82' r='4' fill='%23F5B301' stroke='none'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-size: contain;
+      pointer-events: none; z-index: 0; opacity: .8;
+    }
+
+    /* Tamil ritual sub-line on event cards */
+    .event-ritual-ta {
+      font-family: var(--ff-tamil);
+      font-size: .92rem;
+      font-weight: 600;
+      color: var(--peacock-deep);
+      margin-bottom: .35rem;
+    }
+
+    @media (max-width: 560px) {
+      .muhurtham-card { padding: 1.8rem 1.3rem; }
+      .invoke-slokam { font-size: 1rem; }
+    }
+
+
+    /* Ganesha emblem — soft medallion so it reads clear of the gopuram */
+    .invoke-emblem { position: relative; z-index: 1; width: clamp(150px, 26vw, 200px); }
+    .invoke-emblem::before {
+      content: '';
+      position: absolute; inset: -8%;
+      z-index: -1; border-radius: 50%;
+      background: radial-gradient(circle at 50% 46%, #FFFDF7 0%, #FFFDF7 52%, rgba(255,253,247,.85) 68%, rgba(255,253,247,0) 80%);
+      box-shadow: 0 0 0 1px rgba(200,138,18,.25), 0 0 0 6px rgba(200,138,18,.10);
+    }
+    .invoke-emblem svg > g:last-of-type { stroke: #B8770F; }
+
+
+    /* Gate invocation plaque — legible on any door art */
+    .gate-invoke {
+      display: inline-flex; flex-direction: column; align-items: center;
+      gap: .2rem; margin: 0 auto 1.1rem;
+      padding: 1rem 1.6rem 1.1rem;
+      background: radial-gradient(circle at 50% 40%, rgba(255,251,240,.97) 0%, rgba(255,248,236,.94) 70%, rgba(255,248,236,.9) 100%);
+      border: 1px solid rgba(200,138,18,.55);
+      border-radius: 14px;
+      box-shadow: 0 8px 26px rgba(0,0,0,.22), inset 0 0 0 4px rgba(200,138,18,.10);
+      opacity: 0; animation: fadeUp .9s .15s ease forwards;
+    }
+    .gate-invoke svg { width: 96px; height: auto; display: block; }
+    .gate-invoke svg > g:last-of-type { stroke: #A85C0A; }
+    .gate-invoke-line {
+      font-family: var(--ff-tamil);
+      font-size: 1.02rem; font-weight: 600;
+      color: var(--kumkum); letter-spacing: .01em;
+    }
+
   </style>
 </head>
 <body class="gate-active">
@@ -1654,6 +1900,7 @@
       <div class="gate-door gate-door--right" id="gateDoorRight"></div>
       <div class="gate-door-seam"></div>
       <div class="gate-content">
+        <div class="gate-invoke"><svg viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lord Ganesha"><g class="ganesha-halo" fill="none" stroke="#D9BD84" stroke-width="1" opacity=".55"><circle cx="110" cy="120" r="98" stroke-dasharray="2 7"/><circle cx="110" cy="120" r="90"/></g><g fill="none" stroke="#E8C572" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M78 60 Q110 26 142 60"/><path d="M110 24 L110 60"/><circle cx="110" cy="22" r="5" fill="#F5B301" stroke="#D9BD84"/><path d="M88 46 L96 60 M132 46 L124 60"/><path d="M84 60 Q110 50 136 60"/><path d="M84 60 Q70 96 88 128 Q100 148 110 150 Q120 148 132 128 Q150 96 136 60"/><path d="M88 74 Q44 70 40 104 Q40 128 72 130 Q84 128 88 118"/><path d="M132 74 Q176 70 180 104 Q180 128 148 130 Q136 128 132 118"/><path d="M60 96 Q76 100 82 112" stroke-width="1.3"/><path d="M160 96 Q144 100 138 112" stroke-width="1.3"/><path d="M110 66 L110 84" stroke="#A20D15"/><path d="M104 71 L104 82 M116 71 L116 82" stroke="#A20D15" stroke-width="1.3"/><path d="M93 96 Q100 91 107 96" stroke-width="1.8"/><path d="M127 96 Q120 91 113 96" stroke-width="1.8"/><path d="M110 100 Q110 122 104 138 Q98 156 80 158 Q66 158 70 144 Q73 136 84 138" stroke-width="2.4"/><path d="M101 132 L93 148" stroke-width="1.7"/><path d="M120 132 L126 142" stroke-width="1.7"/><path d="M78 149 q8 -9 16 0 q-8 8 -16 0 z" fill="#F5B301" stroke="#D9BD84" stroke-width="1.3"/><path d="M88 150 Q110 176 132 150"/><path d="M132 150 Q150 150 150 166" stroke-width="1.5"/><path d="M88 150 Q70 152 66 166" stroke-width="1.5"/><path d="M74 178 Q110 202 146 178"/><path d="M74 178 Q88 192 110 194 Q132 192 146 178"/><path d="M92 184 Q110 198 128 184" stroke-width="1.3"/></g></svg><p class="gate-invoke-line ta">॥ வினாயகர் துணை ॥</p></div>
         <p class="gate-eyebrow">With all our hearts</p>
         <h1 class="gate-invite-heading">You are invited</h1>
         <p class="gate-invite-sub">to celebrate with us</p>
@@ -1732,6 +1979,55 @@
     </div>
   </section>
 
+  <!-- INVOCATION · INVITATION · MUHURTHAM -->
+  <section id="invitation" class="temple-bg invocation">
+    <div class="toran-border"></div>
+    <div class="corner-bloom corner-bloom--tl"></div>
+    <div class="corner-bloom corner-bloom--tr"></div>
+    <div class="section-inner reveal">
+
+      <!-- Vinayagar (Ganesha) invocation -->
+      <div class="invoke-emblem"><svg viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lord Ganesha"><g class="ganesha-halo" fill="none" stroke="#D9BD84" stroke-width="1" opacity=".55"><circle cx="110" cy="120" r="98" stroke-dasharray="2 7"/><circle cx="110" cy="120" r="90"/></g><g fill="none" stroke="#E8C572" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M78 60 Q110 26 142 60"/><path d="M110 24 L110 60"/><circle cx="110" cy="22" r="5" fill="#F5B301" stroke="#D9BD84"/><path d="M88 46 L96 60 M132 46 L124 60"/><path d="M84 60 Q110 50 136 60"/><path d="M84 60 Q70 96 88 128 Q100 148 110 150 Q120 148 132 128 Q150 96 136 60"/><path d="M88 74 Q44 70 40 104 Q40 128 72 130 Q84 128 88 118"/><path d="M132 74 Q176 70 180 104 Q180 128 148 130 Q136 128 132 118"/><path d="M60 96 Q76 100 82 112" stroke-width="1.3"/><path d="M160 96 Q144 100 138 112" stroke-width="1.3"/><path d="M110 66 L110 84" stroke="#A20D15"/><path d="M104 71 L104 82 M116 71 L116 82" stroke="#A20D15" stroke-width="1.3"/><path d="M93 96 Q100 91 107 96" stroke-width="1.8"/><path d="M127 96 Q120 91 113 96" stroke-width="1.8"/><path d="M110 100 Q110 122 104 138 Q98 156 80 158 Q66 158 70 144 Q73 136 84 138" stroke-width="2.4"/><path d="M101 132 L93 148" stroke-width="1.7"/><path d="M120 132 L126 142" stroke-width="1.7"/><path d="M78 149 q8 -9 16 0 q-8 8 -16 0 z" fill="#F5B301" stroke="#D9BD84" stroke-width="1.3"/><path d="M88 150 Q110 176 132 150"/><path d="M132 150 Q150 150 150 166" stroke-width="1.5"/><path d="M88 150 Q70 152 66 166" stroke-width="1.5"/><path d="M74 178 Q110 202 146 178"/><path d="M74 178 Q88 192 110 194 Q132 192 146 178"/><path d="M92 184 Q110 198 128 184" stroke-width="1.3"/></g></svg></div>
+      <p class="invoke-tamil">॥ விநாயகர் துணை ॥</p>
+      <p class="invoke-om">ॐ</p>
+      <p class="invoke-slokam">Vakratunda Mahākāya Sūryakoti Samaprabha<br/>Nirvighnam Kuru Me Deva Sarva-Kāryeshu Sarvadā</p>
+      <p class="invoke-meaning">O elephant-faced Lord of a thousand suns’ radiance, remove every obstacle and bless all that we begin.</p>
+
+      <div class="kolam-art"><svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g class="kolam-spin" fill="none" stroke="#C88A12" stroke-width="1.5" stroke-linecap="round"><circle cx="70" cy="70" r="7"/><g><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(45 70 70)"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(90 70 70)"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(135 70 70)"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(180 70 70)"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(225 70 70)"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(270 70 70)"/><path d="M70 60 C 56 46 56 30 70 20 C 84 30 84 46 70 60 Z" transform="rotate(315 70 70)"/></g><g fill="#A20D15" stroke="none"><circle cx="70" cy="14" r="2.4"/><circle cx="110" cy="30" r="2.4"/><circle cx="126" cy="70" r="2.4"/><circle cx="110" cy="110" r="2.4"/><circle cx="70" cy="126" r="2.4"/><circle cx="30" cy="110" r="2.4"/><circle cx="14" cy="70" r="2.4"/><circle cx="30" cy="30" r="2.4"/></g></g></svg></div>
+
+      <!-- Family invitation -->
+      <p class="section-eyebrow" style="color:var(--kumkum);">Thirumana Alaipithal<span class="ta-sub">திருமண அழைப்பிதழ்</span></p>
+      <h2>Together with our families</h2>
+      <p class="invite-blessing">With the blessings of the Almighty and our beloved elders, we joyfully invite you to share in the wedding of our children.</p>
+
+      <div class="family-invite">
+        <div class="family-col">
+          <p class="family-role">Son of</p>
+          <p class="family-names">Mr. <span class="placeholder">[Groom’s Father]</span> &amp; Mrs. <span class="placeholder">[Groom’s Mother]</span></p>
+          <p class="family-place"><span class="placeholder">[City / Native place]</span></p>
+        </div>
+        <div class="family-amp">✦</div>
+        <div class="family-col">
+          <p class="family-role">Daughter of</p>
+          <p class="family-names">Mr. <span class="placeholder">[Bride’s Father]</span> &amp; Mrs. <span class="placeholder">[Bride’s Mother]</span></p>
+          <p class="family-place"><span class="placeholder">[City / Native place]</span></p>
+        </div>
+      </div>
+
+      <div class="couple-tamil"><span>பிருத்வி ராஜ்</span><span class="couple-amp">&amp;</span><span>ஹர்ஷினி</span></div>
+
+      <!-- Muhurtham (auspicious moment) -->
+      <div class="muhurtham-card">
+        <div class="muhurtham-kalasam"><svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g stroke="#C88A12" stroke-width="1.6" stroke-linejoin="round"><path d="M45 8 q5 7 0 14 q-5 -7 0 -14z" fill="#5E0A0C" stroke="none"/><ellipse cx="45" cy="26" rx="12" ry="14" fill="#8A4B1E" stroke="#5E0A0C"/><path d="M33 30 q-16 -5 -23 -19 q17 2 23 12z" fill="#2E7D32" stroke="#1E5E24"/><path d="M57 30 q16 -5 23 -19 q-17 2 -23 12z" fill="#2E7D32" stroke="#1E5E24"/><path d="M25 41 h40 l-3 8 h-34z" fill="#F5B301"/><path d="M27 49 q-8 24 4 42 q14 11 28 0 q12 -18 4 -42z" fill="#C88A12" fill-opacity=".22"/><path d="M24 62 q21 8 42 0" fill="none" stroke="#A20D15" stroke-width="2"/><path d="M27 74 q18 7 36 0" fill="none" stroke="#A20D15" stroke-width="1.4"/><circle cx="45" cy="60" r="3" fill="#A20D15" stroke="none"/></g></svg></div>
+        <p class="muhurtham-label">சுப முகூர்த்தம் · Muhurtham</p>
+        <p class="muhurtham-time"><span class="placeholder">9:15 – 9:45 AM</span></p>
+        <p class="muhurtham-date">Thursday · 28 January 2027</p>
+        <p class="muhurtham-venue">Vijay Raja Mahal · Medavakkam, Chennai</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- COUNTDOWN -->
   <div id="countdown">
     <div class="corner-bloom corner-bloom--tl"></div>
@@ -1774,7 +2070,7 @@
     <span class="sparkle-star" style="top:12%; left:14%; --ssdur:3.3s; --ssdelay:.6s;"></span>
     <span class="sparkle-star" style="bottom:16%; right:10%; --ssdur:3s; --ssdelay:1.3s;"></span>
     <div class="section-inner reveal">
-      <p class="section-eyebrow">How it all began</p>
+      <p class="section-eyebrow">How it all began<span class="ta-sub">எங்கள் கதை</span></p>
       <h2>Our Story</h2>
       <div class="floral-divider"><span>✾</span></div>
       <div class="story-body">
@@ -1798,7 +2094,7 @@
     <div class="toran-border"></div>
     <div class="section-inner">
       <div class="reveal">
-        <p class="section-eyebrow" style="color: var(--kumkum);">Subham · Muhurtham</p>
+        <p class="section-eyebrow" style="color: var(--kumkum);">The Celebrations<span class="ta-sub">சுபம் · விழாக்கள்</span></p>
         <h2>The Celebrations</h2>
         <div class="kolam-divider">
           <span class="kolam-symbol">☸</span>
@@ -1884,7 +2180,7 @@
   <section id="gallery">
     <div class="section-inner">
       <div class="reveal">
-        <p class="section-eyebrow">Captured moments</p>
+        <p class="section-eyebrow">Captured moments<span class="ta-sub">நினைவுகள்</span></p>
         <h2>Our Gallery</h2>
         <div class="floral-divider"><span>✾</span></div>
       </div>
@@ -1916,7 +2212,7 @@
   <section id="rsvp">
     <div class="festive-float" id="rsvpFloat" aria-hidden="true"></div>
     <div class="section-inner reveal">
-      <p class="section-eyebrow">You're invited</p>
+      <p class="section-eyebrow">You're invited<span class="ta-sub">வருகை தந்து வாழ்த்துங்கள்</span></p>
       <h2>Kindly RSVP</h2>
       <div class="floral-divider"><span>✾</span></div>
 
@@ -2439,6 +2735,18 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
         setInterval(spawn, 2600 + Math.random() * 2200);
       });
     })();
+
+    // ── Invocation emblem reveal ───────────────────
+    (function () {
+      const sec = document.getElementById('invitation');
+      if (!sec) return;
+      if (!('IntersectionObserver' in window)) { sec.classList.add('in-view'); return; }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { sec.classList.add('in-view'); io.disconnect(); } });
+      }, { threshold: 0.2 });
+      io.observe(sec);
+    })();
+
   </script>
 </body>
 </html>
