@@ -10,26 +10,31 @@
   <style>
   /* ── TOKENS ─────────────────────────────────── */
     :root {
-      /* South Indian Festive Palette */
-      --kumkum:      #7B1113;
-      --deep-maroon: #52080A;
-      --haldi-gold:  #DAA520;
-      --temple-gold: #C59B27;
-      --gold-glow:   #F3E5AB;
-      --silk-ivory:  #FFFBF2;
-      --warm-sand:   #F6EADB;
-      --leaf-green:  #2E5D32;
+      /* South Indian Festive Palette — vibrant Kanchipuram-silk tones */
+      --kumkum:      #A20D15;   /* brighter kumkum red */
+      --deep-maroon: #5E0A0C;
+      --marigold:    #FF8A00;   /* marigold orange */
+      --turmeric:    #F5B301;   /* turmeric yellow */
+      --haldi-gold:  #E8A00D;
+      --temple-gold: #C88A12;
+      --gold-glow:   #FBE7A1;
+      --magenta:     #C2185B;   /* silk pink / magenta */
+      --peacock:     #0E7C6E;   /* peacock teal-green */
+      --peacock-deep:#0A5A50;
+      --silk-ivory:  #FFF8EC;
+      --warm-sand:   #FBEEDA;
+      --leaf-green:  #2E7D32;
       --bark:        #3A1F1D;
 
-      /* Aliases to replace pale pastel tokens */
-      --cream:       #FFFBF2;
-      --petal:       #F7EDE0;
-      --blush:       #F0DAC5;
-      --rose:        #8B151B;
-      --deep-rose:   #7B1113;
-      --gold:        #C59B27;
-      --gold-light:  #DAA520;
-      --leaf:        #2E5D32;
+      /* Aliases — warmer, more saturated festive bases */
+      --cream:       #FFF7EA;
+      --petal:       #FDE9D2;
+      --blush:       #F8D7BE;
+      --rose:        #A20D15;
+      --deep-rose:   #7A0C11;
+      --gold:        #C88A12;
+      --gold-light:  #E8A00D;
+      --leaf:        #2E7D32;
 
       --ff-display: 'Cormorant Garamond', Georgia, serif;
       --ff-display-2: 'Playfair Display', Georgia, serif;
@@ -1419,6 +1424,220 @@
       .events-grid--duo { grid-template-columns: 1fr; }
       .events-flip-grid { grid-template-columns: 1fr; max-width: 380px; }
     }
+    /* ════════════════════════════════════════════════════════
+       FESTIVE ENHANCEMENTS — richer colour + livelier motion
+       (additive layer; original rules above are preserved)
+       ════════════════════════════════════════════════════════ */
+
+    /* — New keyframes — */
+    @keyframes goldShimmer   { from { background-position: 0% center; } to { background-position: 220% center; } }
+    @keyframes gradientShift { from { background-position: 0% center; } to { background-position: 300% center; } }
+    @keyframes glowPulse     { 0%,100% { filter: drop-shadow(0 0 3px rgba(232,160,13,.35)); } 50% { filter: drop-shadow(0 0 12px rgba(255,138,0,.75)); } }
+    @keyframes garlandSway   { 0%,100% { transform: rotate(-4.5deg); } 50% { transform: rotate(4.5deg); } }
+    @keyframes garlandShimmer{ from { background-position: 0 0; } to { background-position: 24px 0; } }
+    @keyframes softFloat     { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @keyframes diyaFlicker   { 0%,100% { opacity: .85; transform: scaleY(1)   translateY(0); }
+                               50%      { opacity: 1;   transform: scaleY(1.12) translateY(-1px); } }
+    @keyframes sheenSweep    { 0% { transform: translateX(-130%) skewX(-18deg); } 60%,100% { transform: translateX(240%) skewX(-18deg); } }
+
+    /* — Shimmering gradient headings — */
+    h2 {
+      color: var(--kumkum);
+      background: linear-gradient(100deg,
+        var(--deep-maroon) 0%, var(--kumkum) 26%, var(--haldi-gold) 48%,
+        var(--magenta) 62%, var(--kumkum) 80%, var(--deep-maroon) 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 8s linear infinite;
+    }
+    .hero-names {
+      background: linear-gradient(105deg, var(--deep-maroon), var(--kumkum) 45%, var(--haldi-gold) 70%, var(--kumkum));
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-names .ampersand {
+      -webkit-text-fill-color: var(--marigold);
+      color: var(--marigold);
+      text-shadow: 0 0 14px rgba(255,138,0,.35);
+    }
+
+    /* — Countdown: gilded numerals — */
+    #countdown { background: linear-gradient(160deg, var(--petal) 0%, #FBDCBB 55%, var(--warm-sand) 100%); }
+    .cd-number {
+      background: linear-gradient(120deg, var(--kumkum), var(--haldi-gold) 55%, var(--magenta));
+      background-size: 180% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: var(--kumkum);
+      animation: goldShimmer 6s linear infinite;
+    }
+    .cd-sep { color: var(--marigold); animation: glowPulse 2.6s ease-in-out infinite; }
+
+    /* — Dividers & symbols get colour + glow — */
+    .floral-divider span {
+      color: var(--marigold);
+      text-shadow: 0 0 10px rgba(255,138,0,.4);
+      animation: glowPulse 3.4s ease-in-out infinite;
+    }
+    .floral-divider::before { background: linear-gradient(to right, transparent, var(--magenta), var(--haldi-gold)); }
+    .floral-divider::after  { background: linear-gradient(to left,  transparent, var(--peacock),  var(--haldi-gold)); }
+    .kolam-symbol {
+      color: var(--kumkum);
+      font-size: 1.9rem;
+      animation: rotateKolam 22s linear infinite, glowPulse 3s ease-in-out infinite;
+    }
+    .kolam-divider::before { background: linear-gradient(to right, transparent, var(--marigold), var(--kumkum)); height: 2px; }
+    .kolam-divider::after  { background: linear-gradient(to left,  transparent, var(--peacock),  var(--kumkum)); height: 2px; }
+
+    /* — Hero: warmer, multi-hued glow wash — */
+    #hero {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 24%, rgba(255,138,0,.16) 0%, transparent 60%),
+        radial-gradient(circle 320px at 14% 82%, rgba(194,24,91,.12) 0%, transparent 60%),
+        radial-gradient(circle 320px at 86% 78%, rgba(14,124,110,.12) 0%, transparent 60%),
+        var(--cream);
+    }
+
+    /* — Section washes: warmer festive tones — */
+    #rsvp { background: linear-gradient(160deg, #FDE6CB 0%, #FBD7BC 52%, #FCEAD5 100%); }
+    #events.temple-bg { background: linear-gradient(165deg, #FBE9CC 0%, #F6DFBE 100%) !important; }
+
+    /* — Toran: living marigold bead strip — */
+    .toran-border {
+      height: 34px;
+      background-image: radial-gradient(circle at 12px 5px,
+        var(--kumkum) 6px, var(--marigold) 10px, var(--turmeric) 13px, transparent 14px);
+      background-size: 24px 30px;
+      opacity: .92;
+      animation: garlandShimmer 7s linear infinite;
+    }
+
+    /* — Event / venue accent bars: animated multi-hue ribbon — */
+    .event-flip-front::before,
+    .event-card::before,
+    .venue-card::before {
+      height: 4px !important;
+      background: linear-gradient(90deg,
+        var(--marigold), var(--kumkum), var(--turmeric),
+        var(--peacock), var(--magenta), var(--marigold)) !important;
+      background-size: 300% 100% !important;
+      animation: gradientShift 6s linear infinite;
+    }
+    .event-flip-card:hover .event-flip-inner:not(.event-flip-card.flipped .event-flip-inner) {
+      box-shadow: 0 22px 46px rgba(162,13,21,.16);
+    }
+    .event-flip-card:hover .event-flip-front { box-shadow: 0 18px 40px rgba(162,13,21,.16); }
+    .event-flip-back-name, .venue-card-name { color: var(--kumkum); }
+    .venue-card-icon { animation: pinBob 2.6s ease-in-out infinite, glowPulse 3s ease-in-out infinite; }
+
+    /* — Buttons: festive animated gradients + sheen — */
+    .btn-whatsapp, .btn-rsvp {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, var(--kumkum), var(--magenta) 45%, var(--deep-rose) 70%, var(--kumkum)) !important;
+      background-size: 220% auto !important;
+      animation: gradientShift 6s linear infinite;
+    }
+    .btn-whatsapp::after, .btn-rsvp::after {
+      content: '';
+      position: absolute; top: 0; bottom: 0; left: 0;
+      width: 45%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.38), transparent);
+      transform: translateX(-130%) skewX(-18deg);
+      animation: sheenSweep 4.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .event-flip-map-btn, .venue-card-link {
+      background: linear-gradient(120deg, var(--kumkum), var(--magenta)) !important;
+      background-size: 180% auto !important;
+    }
+    .gate-open-btn {
+      background: linear-gradient(120deg, #FCEBB4, var(--turmeric) 50%, #F3D488) !important;
+      background-size: 200% auto !important;
+      animation: gradientShift 7s linear infinite;
+    }
+
+    /* — Nav: growing gradient underline — */
+    nav a { position: relative; }
+    nav a::after {
+      content: '';
+      position: absolute; left: 0; right: 0; bottom: -5px;
+      height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--marigold), var(--kumkum), var(--magenta));
+      transform: scaleX(0); transform-origin: center;
+      transition: transform .3s ease;
+    }
+    nav a:hover::after { transform: scaleX(1); }
+    nav { border-bottom: 1px solid rgba(200,138,18,.35); }
+
+    /* — Footer: deep silk gradient — */
+    footer { background: linear-gradient(160deg, var(--deep-maroon) 0%, var(--bark) 72%) !important; }
+    footer .footer-names {
+      background: linear-gradient(100deg, var(--gold-glow), var(--haldi-gold) 50%, #FCEBB4);
+      background-size: 200% auto;
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: goldShimmer 7s linear infinite;
+    }
+
+    /* ── FESTIVE GARLAND (thoranam) ─────────────────── */
+    .festive-garland {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 46px;
+      display: flex; align-items: flex-start; justify-content: space-around;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 101;
+    }
+    .festive-garland::before {
+      content: '';
+      position: absolute; top: 6px; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--peacock-deep) 8%, var(--peacock) 50%, var(--peacock-deep) 92%, transparent);
+      opacity: .8;
+    }
+    .garland-unit {
+      transform-origin: top center;
+      animation: garlandSway var(--gsdur, 3.4s) ease-in-out infinite;
+      animation-delay: var(--gsdelay, 0s);
+      will-change: transform;
+    }
+    .garland-unit svg { display: block; }
+    nav { top: 40px; }
+
+    /* Second garland framing the temple / events section */
+    .festive-garland--section {
+      position: absolute; top: 0; z-index: 3; height: 48px;
+    }
+
+    /* — Floating diya / marigold layer (footer + rsvp) — */
+    .festive-float { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .festive-float span {
+      position: absolute;
+      bottom: -30px;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: floatUp var(--ffdur, 12s) var(--ffdelay, 0s) ease-in infinite;
+    }
+    @keyframes floatUp {
+      0%   { opacity: 0; transform: translateY(0) translateX(0) rotate(0deg); }
+      12%  { opacity: .8; }
+      85%  { opacity: .5; }
+      100% { opacity: 0; transform: translateY(-360px) translateX(var(--ffx, 30px)) rotate(var(--ffr, 90deg)); }
+    }
+
+    /* — Reduced motion: silence the new continuous animations — */
+    @media (prefers-reduced-motion: reduce) {
+      h2, .hero-names, .cd-number, .cd-sep, .floral-divider span, .kolam-symbol,
+      .toran-border, .event-flip-front::before, .event-card::before, .venue-card::before,
+      .btn-whatsapp, .btn-rsvp, .gate-open-btn, .footer-names, .venue-card-icon,
+      .garland-unit, .festive-float span {
+        animation: none !important;
+      }
+      .btn-whatsapp::after, .btn-rsvp::after { display: none !important; }
+    }
   </style>
 </head>
 <body class="gate-active">
@@ -1458,6 +1677,9 @@
     <a href="#gallery">Gallery</a>
     <a href="#rsvp">RSVP</a>
   </nav>
+
+  <!-- FESTIVE GARLAND (decorative thoranam — no content) -->
+  <div class="festive-garland" id="festiveGarland" aria-hidden="true"></div>
 
   <!-- HERO -->
   <section id="hero">
@@ -1692,6 +1914,7 @@
 
   <!-- RSVP -->
   <section id="rsvp">
+    <div class="festive-float" id="rsvpFloat" aria-hidden="true"></div>
     <div class="section-inner reveal">
       <p class="section-eyebrow">You're invited</p>
       <h2>Kindly RSVP</h2>
@@ -1790,6 +2013,7 @@
 
   <!-- FOOTER -->
   <footer>
+    <div class="festive-float" id="footerFloat" aria-hidden="true"></div>
     <div class="footer-names">Prithvi &amp; Harshini</div>
     <p>Thursday, 28th January 2027 · Chennai, India</p>
     <p style="margin-top:.8rem;">Made with love 🌸</p>
@@ -1859,7 +2083,7 @@
     (function () {
       const heroPetalsEl = document.getElementById('heroPetals');
       if (!heroPetalsEl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const emojis = ['🌸', '🥀', '✾'];
+      const emojis = ['🌸', '🏵️', '🌼', '🥀', '✾'];
       let active = 0;
       function spawnHeroPetal() {
         if (active >= 4) return;
@@ -2158,6 +2382,63 @@ document.getElementById('stopMusicBtn').addEventListener('click', () => {
       link.download = 'prithvi-harshini-wedding.ics';
       link.click();
     });
+
+    // ── Festive marigold garland (thoranam) ────────
+    (function () {
+      const g = document.getElementById('festiveGarland');
+      if (!g) return;
+      function marigoldSVG(leftLeaf) {
+        const lx = leftLeaf ? 12 : 26, rot = leftLeaf ? -38 : 38;
+        return '<svg width="38" height="46" viewBox="0 0 38 46" xmlns="http://www.w3.org/2000/svg">'
+          + '<line x1="19" y1="0" x2="19" y2="13" stroke="#0A5A50" stroke-width="1.4"/>'
+          + '<ellipse cx="' + lx + '" cy="10" rx="3" ry="7" fill="#1E7D32" transform="rotate(' + rot + ' ' + lx + ' 10)"/>'
+          + '<circle cx="28" cy="30" r="3.2" fill="#F5B301"/><circle cx="25.4" cy="23.6" r="3.2" fill="#F5B301"/>'
+          + '<circle cx="19" cy="21" r="3.2" fill="#F5B301"/><circle cx="12.6" cy="23.6" r="3.2" fill="#F5B301"/>'
+          + '<circle cx="10" cy="30" r="3.2" fill="#F5B301"/><circle cx="12.6" cy="36.4" r="3.2" fill="#F5B301"/>'
+          + '<circle cx="19" cy="39" r="3.2" fill="#F5B301"/><circle cx="25.4" cy="36.4" r="3.2" fill="#F5B301"/>'
+          + '<circle cx="19" cy="30" r="7" fill="#FF8A00"/><circle cx="19" cy="30" r="3.4" fill="#A20D15"/>'
+          + '</svg>';
+      }
+      function build() {
+        g.innerHTML = '';
+        const unitW = window.innerWidth < 600 ? 40 : 56;
+        const n = Math.max(6, Math.ceil(window.innerWidth / unitW));
+        for (let i = 0; i < n; i++) {
+          const u = document.createElement('span');
+          u.className = 'garland-unit';
+          u.style.setProperty('--gsdur', (3 + (i % 4) * 0.35).toFixed(2) + 's');
+          u.style.setProperty('--gsdelay', ((i % 6) * 0.18).toFixed(2) + 's');
+          u.style.marginTop = (i % 2 ? 6 : 0) + 'px';
+          u.innerHTML = marigoldSVG(i % 2 === 0);
+          g.appendChild(u);
+        }
+      }
+      build();
+      let rt;
+      window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 250); });
+    })();
+
+    // ── Floating diyas & marigolds (footer + rsvp) ──
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const glyphs = ['🪔', '🏵️', '🌼', '✨'];
+      document.querySelectorAll('.festive-float').forEach(layer => {
+        const spawn = () => {
+          if (!document.body.contains(layer)) return;
+          const s = document.createElement('span');
+          s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+          s.style.left = (5 + Math.random() * 90) + '%';
+          s.style.fontSize = (0.9 + Math.random() * 0.8).toFixed(2) + 'rem';
+          s.style.setProperty('--ffdur', (9 + Math.random() * 6).toFixed(1) + 's');
+          s.style.setProperty('--ffx', (Math.random() * 80 - 40).toFixed(0) + 'px');
+          s.style.setProperty('--ffr', (Math.random() * 160 - 80).toFixed(0) + 'deg');
+          layer.appendChild(s);
+          setTimeout(() => s.remove(), 16000);
+        };
+        for (let i = 0; i < 3; i++) setTimeout(spawn, i * 1800);
+        setInterval(spawn, 2600 + Math.random() * 2200);
+      });
+    })();
   </script>
 </body>
 </html>
