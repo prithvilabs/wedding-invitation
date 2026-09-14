@@ -1864,7 +1864,16 @@
     }
     .invoke-emblem svg > g:last-of-type { stroke: #B8770F; }
 
-
+/* ===== FULL-SCREEN GATE DOORS ===== */
+.gate-doors-wrap {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.gate-door::before,
+.gate-door::after { display: none !important; }
+    
   </style>
 </head>
 <body class="gate-active">
