@@ -1873,6 +1873,14 @@
 }
 .gate-door::before,
 .gate-door::after { display: none !important; }
+
+    /* ===== CUSTOM GARLAND IMAGE ===== */
+.festive-garland {
+  height: 110px;                                  /* how tall you want the garland */
+  background: url('garland.png') top center / 100% 100% no-repeat;
+}
+.festive-garland::before { display: none; }        /* hides the old green string line */
+nav { top: 110px; }                                /* keeps the menu below the garland */
     
   </style>
 </head>
