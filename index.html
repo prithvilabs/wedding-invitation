@@ -1864,23 +1864,18 @@
     }
     .invoke-emblem svg > g:last-of-type { stroke: #B8770F; }
 
-/* ===== FULL-SCREEN GATE DOORS ===== */
-.gate-doors-wrap {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-.gate-door::before,
-.gate-door::after { display: none !important; }
-
-    /* ===== CUSTOM GARLAND IMAGE ===== */
+/* ===== GARLAND FRAME (full screen) ===== */
 .festive-garland {
-  height: 110px;                                  /* how tall you want the garland */
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
   background: url('garland.png') top center / 100% 100% no-repeat;
+  z-index: 101;
+  pointer-events: none;
 }
-.festive-garland::before { display: none; }        /* hides the old green string line */
-nav { top: 110px; }                                /* keeps the menu below the garland */
+.festive-garland::before { display: none; }   /* hides the old green string line */
+nav { top: 13vh; }                            /* drops the menu just below the swag */                              /* keeps the menu below the garland */
     
   </style>
 </head>
